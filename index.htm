@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>⚡ Trilha Dev Python - Bora Programar! ⚡</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+        /* Cores Base */
+        --primary-color: #6a0572; /* Roxo vibrante */
+        --secondary-color: #7d3ac1; /* Roxo mais claro */
+        --accent-color-green: #38b000; /* Verde vivo */
+        --accent-color-blue: #007bff; /* Azul clássico */
+        --bg-light: #f0f2f5; /* Fundo bem claro */
+        --text-dark: #333;
+        --text-light: #fefefe;
+        --card-bg: #ffffff;
+        --border-color: #e0e0e0;
+        --shadow-light: rgba(0, 0, 0, 0.08);
+        --shadow-medium: rgba(0, 0, 0, 0.15);
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background-color: var(--bg-light);
+      margin: 0;
+      padding: 0;
+      color: var(--text-dark);
+      line-height: 1.6;
+    }
+    header {
+      background-color: var(--primary-color);
+      color: var(--text-light);
+      text-align: center;
+      padding: 30px 0;
+      box-shadow: 0 4px 15px var(--shadow-medium);
+      animation: fadeInDown 1s ease-out;
+    }
+    header h1 {
+        font-family: 'Poppins', sans-serif;
+        font-size: 2.8em;
+        margin: 0;
+        letter-spacing: 1px;
+    }
+    header p {
+        font-size: 1.1em;
+        margin-top: 10px;
+        opacity: 0.9;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 30px auto;
+      background: var(--card-bg);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px var(--shadow-light);
+      animation: fadeInUp 1s ease-out;
+    }
+    section {
+      margin-bottom: 40px;
+      padding: 20px 0;
+      display: none; /* Esconde todas as seções por padrão */
+    }
+    section.active {
+      display: block; /* Mostra apenas a seção ativa */
+    }
+    h2 {
+      font-family: 'Poppins', sans-serif;
+      color: var(--primary-color);
+      font-size: 2em;
+      margin-bottom: 25px;
+      border-bottom: 3px solid var(--accent-color-green);
+      padding-bottom: 10px;
+      text-align: center;
+    }
+    h3 {
+        font-family: 'Poppins', sans-serif;
+        color: var(--secondary-color);
+        font-size: 1.5em;
+        margin-top: 35px;
+        margin-bottom: 15px;
+        border-left: 5px solid var(--accent-color-blue);
+        padding-left: 10px;
+    }
+    h4 {
+        color: #555;
+        font-size: 1.2em;
+        margin-top: 25px;
+        margin-bottom: 10px;
+    }
+    p {
+        margin-bottom: 10px;
+    }
+    ul {
+        list-style-type: disc;
+        margin-left: 25px;
+        margin-bottom: 15px;
+    }
+    li {
+        margin-bottom: 5px;
+    }
+    pre {
+        background-color: #2b2b2b; /* Fundo escuro para código */
+        color: #a9ff8e; /* Texto em verde claro */
+        padding: 15px;
+        border-radius: 8px;
+        overflow-x: auto;
+        font-family: 'Consolas', 'Monaco', monospace;
+        font-size: 0.9em;
+        margin-top: 15px;
+        margin-bottom: 20px;
+        box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+    }
+    code {
+        font-family: 'Consolas', 'Monaco', monospace;
+        color: #e67e22; /* Laranja para código inline */
+        background-color: rgba(230, 126, 34, 0.1);
+        padding: 2px 5px;
+        border-radius: 3px;
+    }
+    a {
+        color: var(--accent-color-blue);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+    a:hover {
+        color: var(--primary-color);
+        text-decoration: underline;
+    }
+
+    .video-links ul {
+        list-style-type: none; /* Remove bolinhas dos links de vídeo */
+        padding-left: 0;
+    }
+    .video-links li {
+        margin-bottom: 10px;
+    }
+    .video-links a {
+        display: block;
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+        padding: 10px 15px;
+        border-radius: 5px;
+        color: var(--text-dark);
+        transition: background-color 0.2s ease, transform 0.2s ease;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    .video-links a:hover {
+        background-color: #e9ecef;
+        transform: translateY(-2px);
+        text-decoration: none;
+    }
+
+
+    .question {
+      margin-bottom: 20px;
+      border: 1px solid var(--border-color);
+      background-color: var(--card-bg);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px var(--shadow-light);
+      transition: transform 0.2s ease;
+    }
+    .question:hover {
+        transform: translateY(-3px);
+    }
+    .question p {
+        font-size: 1.1em;
+        font-weight: 600;
+        margin-bottom: 15px;
+        color: var(--primary-color);
+    }
+    .options label {
+      display: block;
+      margin-bottom: 12px;
+      cursor: pointer;
+      padding: 10px 15px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    }
+    .options label:hover {
+        background-color: #e9f5ff;
+        border-color: var(--accent-color-blue);
+        transform: translateY(-2px);
+    }
+    .options input[type="radio"] {
+      margin-right: 10px;
+      transform: scale(1.2); /* Deixa o radio button um pouco maior */
+      vertical-align: middle; /* Alinha com o texto */
+    }
+    button {
+      background-color: var(--accent-color-blue);
+      color: var(--text-light);
+      border: none;
+      padding: 12px 25px;
+      cursor: pointer;
+      border-radius: 8px;
+      margin-top: 15px;
+      font-size: 1em;
+      font-weight: 600;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    button:hover {
+      background-color: #0056b3;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+    .result {
+      margin-top: 15px;
+      padding: 10px 15px;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .correct {
+      color: var(--accent-color-green);
+      background-color: rgba(56, 176, 0, 0.1);
+      border: 1px solid var(--accent-color-green);
+    }
+    .incorrect {
+      color: #e74c3c; /* Vermelho vibrante */
+      background-color: rgba(231, 76, 60, 0.1);
+      border: 1px solid #e74c3c;
+    }
+    .navigation-buttons {
+        text-align: center;
+        margin-top: 40px;
+        margin-bottom: 30px;
+        display: flex; /* Para centralizar e espaçar os botões */
+        justify-content: center;
+        flex-wrap: wrap; /* Permite quebrar linha em telas menores */
+        gap: 15px; /* Espaçamento entre os botões */
+    }
+    .navigation-buttons button {
+        background-color: var(--primary-color);
+        padding: 15px 30px;
+        font-size: 1.2em;
+        border-radius: 30px; /* Botões mais arredondados */
+        box-shadow: 0 5px 15px var(--shadow-light);
+    }
+    .navigation-buttons button:hover {
+        background-color: var(--secondary-color);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px var(--shadow-medium);
+    }
+
+    /* Estilo específico para a seção de Pandas */
+    #pandas-quiz h2 {
+        color: #1a5276; /* Um azul mais profundo para o Pandas */
+        border-bottom-color: #1abc9c; /* Verde água para o Pandas */
+    }
+    #pandas-quiz button {
+        background-color: #1abc9c; /* Verde água para botões Pandas */
+    }
+    #pandas-quiz button:hover {
+        background-color: #16a085;
+    }
+
+    /* Animações de entrada */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>⚡ Trilha Dev Python - Bora Programar! ⚡</h1>
+    <p>Seu guia completo e interativo para dominar a lógica e o Python!</p>
+  </header>
+  <main>
+    <section id="intro-guide" class="active">
+        <h2>Seu Mapa de Lógica e Python</h2>
+        <p>E aí, futuro(a) dev! Preparado(a) pra embarcar nessa trip irada da programação? Aqui a gente vai te dar o bizu da **lógica** e uma introdução bombástica ao **Python**, uma das linguagens mais tops do momento.</p>
+
+        <h3>Lógica de Programação: A Brisa da Solução!</h3>
+        <p>Esquece o código por um minuto! A **lógica de programação** é tipo a sua mente de detetive: como você organiza as ideias pra resolver um puzzle? É o passo a passo, a receita de bolo pra chegar no resultado. Antes de digitar `print("Hello World")`, você já tem que saber O QUE e EM QUE ORDEM fazer. É a base pra tudo, saca?</p>
+
+        <h3>Python: O Canivete Suíço da Programação!</h3>
+        <p>Se tem uma linguagem que tá bombando e é perfeita pra quem tá começando, essa é o **Python**! Por que ele é tão querido?</p>
+        <ul>
+            <li><strong>Mó Legal de Ler:</strong> A sintaxe do Python é tão clara que parece que você tá lendo inglês. Sem complicação pra entender o que o código faz.</li>
+            <li><strong>Faz de Tudo:</strong> De sites a inteligência artificial, de automação a jogos... o Python tá em tudo! Ele é tipo o curinga do baralho da programação.</li>
+            <li><strong>Comunidade Monstra:</strong> A galera que usa Python é gigante! Tem tutorial, fórum e gente pra te ajudar a cada esquina da internet.</li>
+            <li><strong>Cheio de Ferramentas:</strong> O Python vem com um "kit" de bibliotecas e frameworks que turbinam suas funcionalidades pra qualquer parada que você precisar.</li>
+        </ul>
+
+        ---
+
+        <h3>Primeiros Passos: Setup do Seu PC Dev!</h3>
+
+        <h4>Como Instalar o Python? É Fácil!</h4>
+        <p>Pra começar a programar de verdade, você precisa ter o Python instalado no seu computador. Siga o passo a passo e vamo que vamo!</p>
+        <ol>
+            <li>Cola no site oficial: <a href="https://www.python.org/downloads/" target="_blank">python.org/downloads/</a></li>
+            <li>Baixa a versão mais recente e estável pro seu sistema (Windows, macOS, Linux).</li>
+            <li>Roda o instalador. **MUITO IMPORTANTE no Windows**: na primeira tela, marca a caixinha "Add Python X.Y to PATH". Isso faz com que você consiga rodar Python direto do seu terminal, sem dor de cabeça.</li>
+            <li>Depois de instalar, abre o **Terminal** (Mac/Linux) ou **Prompt de Comando/PowerShell** (Windows) e digita:
+                <pre><code>python --version</code></pre>
+                ou (se não funcionar a de cima)
+                <pre><code>python3 --version</code></pre>
+                Se aparecer a versão do Python, é sucesso! Se não, tenta reiniciar o PC.</li>
+        </ol>
+
+        <h4>Instalando Bibliotecas com o Pip (Seu Gerenciador de Ferramentas!)</h4>
+        <p>O **pip** é seu melhor amigo pra adicionar novas funcionalidades ao Python. É tipo uma loja de apps, mas pra código. Precisou de algo novo? `pip install` na cabeça!</p>
+        <p>Pra instalar uma biblioteca, abre o Terminal/Prompt de Comando e manda:</p>
+        <pre><code>pip install nome_da_biblioteca</code></pre>
+        <p><strong>Exemplo pra instalar o Pandas (que é fera!):</strong></p>
+        <pre><code>pip install pandas</code></pre>
+        <p>Quer atualizar uma biblioteca que já tem? Fica esperto e usa:</p>
+        <pre><code>pip install --upgrade nome_da_biblioteca</code></pre>
+
+        ---
+
+        <h3>Python na Prática: Os Conceitos Essenciais</h3>
+
+        <h4>1. Variáveis: As Caixinhas de Informação</h4>
+        <p>Pensa nas variáveis como caixinhas onde você guarda dados. Cada caixinha tem um nome (pra você saber o que tá dentro) e um valor (a informação em si). No Python, você nem precisa dizer o tipo de coisa que vai guardar, ele já saca!</p>
+        <p><strong>Exemplo:</strong></p>
+        <pre><code>nome = "Alice"     # A caixinha 'nome' guarda o texto "Alice"
+idade = 30         # A caixinha 'idade' guarda o número 30
+preco = 9.99       # A caixinha 'preco' guarda o número com vírgula 9.99</code></pre>
+
+        <h4>2. Tipos de Dados: A Natureza da Informação</h4>
+        <p>Python entende vários tipos de informações diferentes:</p>
+        <ul>
+            <li><strong>Inteiros (`int`):</strong> Números sem vírgula (tipo <code>5</code>, <code>-10</code>, <code>0</code>).</li>
+            <li><strong>Ponto Flutuante (`float`):</strong> Números com vírgula (tipo <code>3.14</code>, <code>-0.5</code>).</li>
+            <li><strong>Strings (`str`):</strong> Textos, tipo um tweet ou uma frase (tipo <code>"Olá, Mundo!"</code>, <code>'Python é demais!'</code>).</li>
+            <li><strong>Booleanos (`bool`):</strong> Só pode ser <code>True</code> (verdadeiro) ou <code>False</code> (falso). É a base pra decisões!</li>
+            <li><strong>Listas (`list`):</strong> Listas de coisas, tipo sua playlist favorita. Podem ter vários itens e você pode mudar a ordem ou adicionar mais (tipo <code>[1, 2, 3]</code>, <code>['maçã', 'banana']</code>).</li>
+            <li><strong>Dicionários (`dict`):</strong> Coleções de pares "chave-valor", tipo um dicionário de verdade. Cada chave é um "nome" e o valor é o "significado" (tipo <code>{'nome': 'João', 'idade': 25}</code>).</li>
+        </ul>
+
+        <h4>3. Operadores: As Contas e Comparações</h4>
+        <p>Símbolos que fazem as operações. Pense neles como as funções da sua calculadora e do seu cérebro lógico:</p>
+        <ul>
+            <li><strong>Aritméticos:</strong> `+` (soma), `-` (subtração), `*` (multiplicação), `/` (divisão), `%` (resto da divisão), `**` (potência), `//` (divisão sem resto).</li>
+            <li><strong>Comparação:</strong> `==` (igual a), `!=` (diferente de), `>` (maior que), `<` (menor que), `>=` (maior ou igual), `<=` (menor ou igual).</li>
+            <li><strong>Lógicos:</strong> `and` (E, tudo tem que ser verdade), `or` (OU, basta um ser verdade), `not` (NÃO, inverte o valor).</li>
+        </ul>
+
+        <h4>4. Estruturas Condicionais: O Jogo do "Se" (`if`, `elif`, `else`)</h4>
+        <p>É como seu programa decide o que fazer. "SE" a condição for verdadeira, faz isso, "SENÃO SE" outra condição for verdadeira, faz aquilo, "SENÃO" (se nenhuma for) faz outra coisa. Simples assim!</p>
+        <p><strong>Exemplo:</strong></p>
+        <pre><code>idade = 18
+if idade >= 18:
+    print("Você pode tirar a CNH!")
+elif idade >= 12:
+    print("Você já pode jogar games online com a galera!")
+else:
+    print("Ainda não pode dirigir, mas logo chega lá!")</code></pre>
+
+        <h4>5. Estruturas de Repetição: A Malhação do Código (`for`, `while`)</h4>
+        <p>Quer repetir uma tarefa várias vezes sem ficar copiando e colando? Pra isso servem os laços!</p>
+        <ul>
+            <li><strong>`for` (Para cada item):</strong> Perfeito pra percorrer listas, textos ou fazer algo um número exato de vezes.
+            <p><strong>Exemplo:</strong></p>
+            <pre><code>for i in range(5): # Vai de 0 a 4
+    print(f"Contando... {i}") # Saída: Contando... 0, Contando... 1, etc.
+
+filmes = ["Duna", "Interestelar", "Matrix"]
+for filme in filmes:
+    print(f"Adoro o filme {filme}!")</code></pre></li>
+            <li><strong>`while` (Enquanto uma condição for verdade):</strong> Repete o código ENQUANTO uma condição específica for verdadeira. Cuidado pra não criar um loop infinito!
+            <p><strong>Exemplo:</strong></p>
+            <pre><code>gasolina = 10
+while gasolina > 0:
+    print(f"Carro andando... Gasolina: {gasolina}L")
+    gasolina -= 1 # Gasta 1 litro por 'volta'
+print("Acabou a gasolina!")</code></pre></li>
+        </ul>
+
+        <h4>6. Funções: Os Superpoderes do Código</h4>
+        <p>Funções são blocos de código que você cria pra fazer uma tarefa específica. É tipo um "superpoder" que você pode chamar várias vezes, sem precisar reescrever tudo. Deixa o código organizado e fácil de usar!</p>
+        <p><strong>Exemplo:</strong></p>
+        <pre><code>def cumprimentar(nome):
+    """Essa função manda um salve personalizado."""
+    return "E aí, " + nome + "! Tudo certo?"
+
+saudacao_do_dia = cumprimentar("Biel")
+print(saudacao_do_dia) # Saída: E aí, Biel! Tudo certo?
+
+def calcular_desconto(valor, porcentagem):
+    desconto = valor * (porcentagem / 100)
+    return valor - desconto
+
+preco_final = calcular_desconto(100, 10) # 100 - 10% de desconto
+print(f"Preço com desconto: R${preco_final:.2f}") # Saída: Preço com desconto: R$90.00</code></pre>
+
+        ---
+
+        <h3>Bibliotecas Úteis em Python: Seu Kit de Ferramentas Extra!</h3>
+        <p>O Python já é fera, mas com as bibliotecas, ele vira um monstro! Elas adicionam funcionalidades que não vêm "de fábrica", transformando o Python na ferramenta ideal pra qualquer projeto:</p>
+
+        <h4>Pra Arrasar na Análise de Dados e IA:</h4>
+        <ul>
+            <li><strong>Pandas:</strong> (Se prepare pro quiz logo mais!) O chefão pra **manipular e analisar tabelas de dados** (tipo Excel, mas muito mais potente!). Importa dados, limpa, organiza, faz umas contas... É o "must-have" pra quem mexe com dados.</li>
+            <li><strong>NumPy:</strong> A base da matemática em Python. Ele acelera MUITO as contas com **números em arrays e matrizes** (como tabelas matemáticas). Essencial pro Pandas e pra inteligência artificial.</li>
+            <li><strong>Matplotlib:</strong> Pra criar **gráficos e visualizações** incríveis! Linhas, barras, pizza... tudo pra você "enxergar" seus dados e entender o que tá rolando.</li>
+            <li><strong>Seaborn:</strong> Companheiro do Matplotlib, mas com um toque de mágica pra fazer **gráficos estatísticos superbonitos** com menos código. Seus relatórios nunca mais serão os mesmos!</li>
+            <li><strong>Scikit-learn:</strong> A biblioteca mais famosa pra **Machine Learning** (aprendizado de máquina). Tem um montão de algoritmos pra ensinar o computador a aprender com os dados e fazer previsões.</li>
+        </ul>
+
+        <h4>Pra Automatizar e Montar Sites (Web Dev):</h4>
+        <ul>
+            <li><strong>Requests:</strong> Facilita a realização de **requisições HTTP** (como acessar páginas da web ou APIs) em Python. Perfeito para web scraping ou interação com serviços web.</li>
+            <li><strong>Beautiful Soup (`bs4`):</strong> Trabalha junto com o Requests pra **organizar e extrair dados de páginas web** que você baixou. Tipo um garimpeiro de informações na internet.</li>
+            <li><strong>Selenium:</strong> Quer que o computador navegue por um site sozinho, clique em botões ou preencha formulários? O Selenium faz isso! Ótimo pra **automação de tarefas em navegadores** ou pra testar sites.</li>
+            <li><strong>OS Module:</strong> (Módulo embutido) Pra mexer com o **sistema operacional**. Tipo criar pastas, mover arquivos, rodar comandos do sistema... Perfeito pra automatizar tarefas no seu próprio PC.</li>
+            <li><strong>Django / Flask:</strong> (Frameworks web) Se você sonha em criar **sites e aplicativos web completos**, essas são as ferramentas. Django é mais "cheio de recursos", Flask é mais "leve e flexível".</li>
+        </ul>
+
+        <h4>Outras Ferramentas Indispensáveis:</h4>
+        <ul>
+            <li><strong>Pillow (PIL Fork):</strong> Pra dar um "up" nas suas fotos! Serve pra **editar imagens** (redimensionar, cortar, colocar filtros).</li>
+            <li><strong>DateTime:</strong> (Também já vem!) Pra lidar com **datas e horas**, fazer cálculos e deixar tudo no formato certo.</li>
+            <li><strong>Random:</strong> (Embutido) Pra gerar **números aleatórios**. Útil em jogos, simulações ou pra sortear algo.</li>
+        </ul>
+
+        ---
+
+        <h3>Introdução ao Pandas: O Mestre dos Dados Tabulares!</h3>
+        <p>Pra fechar esse guia, vamos falar mais um pouco do Pandas, que é uma mão na roda pra quem trabalha com dados! Ele tem duas estruturas principais que vão te salvar a vida:</p>
+        <ul>
+            <li><strong>Series:</strong> Imagina uma coluna de uma planilha, mas com um nomezinho (índice) pra cada linha. É tipo uma lista turbinada.</li>
+            <li><strong>DataFrame:</strong> Agora imagina uma planilha inteira! Um **DataFrame** é uma tabela com linhas e colunas, onde cada coluna é uma Series. É onde a mágica da análise de dados acontece!</li>
+        </ul>
+        <p><strong>Com o Pandas, você consegue:</strong></p>
+        <ul>
+            <li><strong>Ler e Escrever Dados:</strong> Abrir e salvar arquivos tipo CSV, Excel, TXT, e muito mais.</li>
+            <li><strong>Filtrar e Selecionar:</strong> Encontrar só as informações que interessam, tipo "me mostra só as vendas de SP".</li>
+            <li><strong>Limpar Dados:</strong> Tirar valores bagunçados, duplicados, ou que estão faltando.</li>
+            <li><strong>Transformar Dados:</strong> Criar colunas novas, juntar tabelas, pivotar tabelas e muito mais.</li>
+            <li><strong>Analisar e Agrupar:</strong> Fazer médias, somas, agrupar dados por categorias e tirar conclusões.</li>
+        </ul>
+        <p><strong>Exemplo Básico de Uso:</strong></p>
+        <pre><code>import pandas as pd # Sempre importamos assim, é a convenção!
+
+# Criando um DataFrame na mão, tipo uma mini-tabela
+meus_alunos = {
+    'Nome': ['Ana', 'Bruno', 'Carla'],
+    'Idade': [16, 17, 16],
+    'Serie': ['2º EM', '3º EM', '2º EM']
+}
+df_alunos = pd.DataFrame(meus_alunos) # Transformando em DataFrame
+
+print("Tabela de Alunos:")
+print(df_alunos)
+
+# Quer ver só os nomes?
+print("\nColuna 'Nome' dos alunos:")
+print(df_alunos['Nome'])
+
+# Só os alunos com 16 anos?
+print("\nAlunos com 16 anos:")
+print(df_alunos[df_alunos['Idade'] == 16])
+
+# Qual a média de idade da turma?
+print(f"\nMédia de idade da turma: {df_alunos['Idade'].mean():.2f}")</code></pre>
+        <p>Viu só? Pandas é a sua arma secreta pra dominar o mundo dos dados em Python!</p>
+
+        ---
+
+        <h3>🎥 Recursos em Vídeo: Aprenda na Prática!</h3>
+        <p>Complemente seus estudos com estas vídeo aulas. Lembre-se de substituir os links abaixo pelos URLs reais dos vídeos que você quer indicar:</p>
+        <div class="video-links">
+            <ul>
+                <li><a href="https://www.youtube.com/watch?v=Mp0vhMDI7fA&list=PLvE-ZAFRgX8hnECDn1v9HNTI71veL3oW0&index=3" target="_blank">Introdução à Lógica de Programação (Aula 1)</a></li>
+                <li><a href="https://www.youtube.com/watch?v=31llNGKWDdo&list=PLvE-ZAFRgX8hnECDn1v9HNTI71veL3oW0&index=5" target="_blank">Primeiros Passos com Python (Aula 2)</a></li>
+                <li><a href="https://www.youtube.com/watch?v=C0aj3FjN5e0&t=2476s" target="_blank">Desvendando o Pandas: DataFrames (Aula 3)</a></li>
+                <li><a href="https://www.youtube.com/watch?v=AW20pJS0RqA" target="_blank">Bibliotecas Python Essenciais (Aula 4)</a></li>
+            </ul>
+            <p style="font-size: 0.9em; color: #888;">*Aproveite os conteúdos que eu escolhi a dedo para vocês se desenvolverem cada vez mais...</p>
+        </div>
+
+        ---
+
+        <h3>Bora Testar?</h3>
+        <p>Agora que você já pegou a visão dos conceitos e das ferramentas, é hora de colocar o cérebro pra funcionar! Clica nos botões abaixo pra ir pros nossos quizzes e ver o quanto você aprendeu. Mandando bem no quiz, a gente sabe que você tá no caminho certo pra se tornar um dev sinistro!</p>
+    </section>
+
+    <div class="navigation-buttons">
+        <button onclick="showSection('intro-guide')">Guia da Matéria</button>
+        <button onclick="showSection('python-logic-quiz')">Quiz de Lógica</button>
+        <button onclick="showSection('pandas-quiz')">Quiz de Pandas</button>
+    </div>
+
+    <section id="python-logic-quiz">
+      <h2>Quiz de Lógica de Programação</h2>
+      <h3>Módulo 1: Iniciante</h3>
+      <div class="question">
+        <p>1. Qual comando imprime "Olá, Mundo!" no Python?</p>
+        <div class="options">
+          <label><input type="radio" name="q1" value="print('Olá, Mundo!')"> `print('Olá, Mundo!')`</label>
+          <label><input type="radio" name="q1" value="echo 'Olá, Mundo!'"> `echo 'Olá, Mundo!'`</label>
+          <label><input type="radio" name="q1" value="console.log('Olá, Mundo!')"> `console.log('Olá, Mundo!')`</label>
+          <label><input type="radio" name="q1" value="show('Olá, Mundo!')"> `show('Olá, Mundo!')`</label>
+        </div>
+        <button onclick="checkRadioAnswer('q1', 'print(\'Olá, Mundo!\')')">Verificar</button>
+        <div class="result" id="r1"></div>
+      </div>
+
+      <div class="question">
+        <p>2. Como declarar uma variável com valor 10?</p>
+        <div class="options">
+          <label><input type="radio" name="q2" value="var x = 10;"> `var x = 10;`</label>
+          <label><input type="radio" name="q2" value="let x = 10;"> `let x = 10;`</label>
+          <label><input type="radio" name="q2" value="x = 10"> `x = 10`</label>
+          <label><input type="radio" name="q2" value="const x = 10;"> `const x = 10;`</label>
+        </div>
+        <button onclick="checkRadioAnswer('q2', 'x = 10')">Verificar</button>
+        <div class="result" id="r2"></div>
+      </div>
+
+      <div class="question">
+        <p>3. Qual comando solicita entrada do usuário em Python?</p>
+        <div class="options">
+          <label><input type="radio" name="q3" value="read()"> `read()`</label>
+          <label><input type="radio" name="q3" value="get_input()"> `get_input()`</label>
+          <label><input type="radio" name="q3" value="input()"> `input()`</label>
+          <label><input type="radio" name="q3" value="prompt()"> `prompt()`</label>
+        </div>
+        <button onclick="checkRadioAnswer('q3', 'input()')">Verificar</button>
+        <div class="result" id="r3"></div>
+      </div>
+
+      <div class="question">
+        <p>4. Como imprimir a soma de 5 e 7 em Python?</p>
+        <div class="options">
+          <label><input type="radio" name="q4" value="print('5 + 7')"> `print('5 + 7')`</label>
+          <label><input type="radio" name="q4" value="print(5 + 7)"> `print(5 + 7)`</label>
+          <label><input type="radio" name="q4" value="sum(5, 7)"> `sum(5, 7)`</label>
+          <label><input type="radio" name="q4" value="echo 5 + 7"> `echo 5 + 7`</label>
+        </div>
+        <button onclick="checkRadioAnswer('q4', 'print(5 + 7)')">Verificar</button>
+        <div class="result" id="r4"></div>
+      </div>
+
+      <h3>Módulo 2: Intermediário</h3>
+      <div class="question">
+        <p>1. Qual operador é usado para verificar igualdade em Python?</p>
+        <div class="options">
+          <label><input type="radio" name="q5" value="="> `=`</label>
+          <label><input type="radio" name="q5" value="=="> `==`</label>
+          <label><input type="radio" name="q5" value="==="> `===`</label>
+          <label><input type="radio" name="q5" value="!="> `!=`</label>
+        </div>
+        <button onclick="checkRadioAnswer('q5', '==')">Verificar</button>
+        <div class="result" id="r5"></div>
+      </div>
+
+      <div class="question">
+        <p>2. Como criar um laço de 0 a 4 (exclusivo) com `for` em Python?</p>
+        <div class="options">
+          <label><input type="radio" name="q6" value="for i in range(5):"> `for i in range(5):`</label>
+          <label><input type="radio" name="q6" value="for i from 0 to 4:"> `for i from 0 to 4:`</label>
+          <label><input type="radio" name="q6" value="loop(0, 4)"> `loop(0, 4)`</label>
+          <label><input type="radio" name="q6" value="for i in 0..4:"> `for i in 0..4:`</label>
+        </div>
+        <button onclick="checkRadioAnswer('q6', 'for i in range(5):')">Verificar</button>
+        <div class="result" id="r6"></div>
+      </div>
+
+      <div class="question">
+        <p>3. Qual é a sintaxe correta para uma estrutura `if-else` em Python?</p>
+        <div class="options">
+          <label><input type="radio" name="q7" value="if condição { ... } else { ... }"> `if condição { ... } else { ... }`</label>
+          <label><input type="radio" name="q7" value="if condição: ... else: ..."> `if condição: ... else: ...`</label>
+          <label><input type="radio" name="q7" value="if (condição) { ... } else { ... }"> `if (condição) { ... } else { ... }`</label>
+          <label><input type="radio" name="q7" value="if condição then ... else ..."> `if condição then ... else ...`</label>
+        </div>
+        <button onclick="checkRadioAnswer('q7', 'if condição: ... else: ...')">Verificar</button>
+        <div class="result" id="r7"></div>
+      </div>
+
+      <div class="question">
+        <p>4. Qual função converte uma string em um número inteiro em Python?</p>
+        <div class="options">
+          <label><input type="radio" name="q8" value="str_to_int()"> `str_to_int()`</label>
+          <label><input type="radio" name="q8" value="to_int()"> `to_int()`</label>
+          <label><input type="radio" name="q8" value="int()"> `int()`</label>
+          <label><input type="radio" name="q8" value="parse_int()"> `parse_int()`</label>
+        </div>
+        <button onclick="checkRadioAnswer('q8', 'int()')">Verificar</button>
+        <div class="result" id="r8"></div>
+      </div>
+
+      <h3>Módulo 3: Avançado</h3>
+      <div class="question">
+        <p>1. Como você define uma função em Python?</p>
+        <div class="options">
+          <label><input type="radio" name="q9" value="function minha_funcao():"> `function minha_funcao():`</label>
+          <label><input type="radio" name="q9" value="def minha_funcao():"> `def minha_funcao():`</label>
+          <label><input type="radio" name="q9" value="func minha_funcao():"> `func minha_funcao():`</label>
+          <label><input type="radio" name="q9" value="define minha_funcao():"> `define minha_funcao():`</label>
+        </div>
+        <button onclick="checkRadioAnswer('q9', 'def minha_funcao():')">Verificar</button>
+        <div class="result" id="r9"></div>
+      </div>
+
+      <div class="question">
+        <p>2. Qual comando é usado para interromper um laço (loop) em Python?</p>
+        <div class="options">
+          <label><input type="radio" name="q10" value="stop"> `stop`</label>
+          <label><input type="radio" name="q10" value="exit"> `exit`</label>
+          <label><input type="radio" name="q10" value="break"> `break`</label>
+          <label><input type="radio" name="q10" value="continue"> `continue`</label>
+        </div>
+        <button onclick="checkRadioAnswer('q10', 'break')">Verificar</button>
+        <div class="result" id="r10"></div>
+      </div>
+
+      <div class="question">
+        <p>3. Como você retorna um valor de uma função em Python?</p>
+        <div class="options">
+          <label><input type="radio" name="q11" value="give"> `give`</label>
+          <label><input type="radio" name="q11" value="return"> `return`</label>
+          <label><input type="radio" name="q11" value="output"> `output`</label>
+          <label><input type="radio" name="q11" value="yield"> `yield`</label>
+        </div>
+        <button onclick="checkRadioAnswer('q11', 'return')">Verificar</button>
+        <div class="result" id="r11"></div>
+      </div>
+
+      <div class="question">
+        <p>4. Qual comando é usado para repetir um bloco de código enquanto uma condição for verdadeira?</p>
+        <div class="options">
+          <label><input type="radio" name="q12" value="for"> `for`</label>
+          <label><input type="radio" name="q12" value="loop_while"> `loop_while`</label>
+          <label><input type="radio" name="q12" value="do_while"> `do_while`</label>
+          <label><input type="radio" name="q12" value="while"> `while`</label>
+        </div>
+        <button onclick="checkRadioAnswer('q12', 'while')">Verificar</button>
+        <div class="result" id="r12"></div>
+      </div>
+    </section>
+
+    <section id="pandas-quiz">
+      <h2>Quiz de Pandas em Python</h2>
+
+      <div class="question">
+        <p>1. Qual é a forma correta de importar a biblioteca Pandas em Python?</p>
+        <div class="options">
+          <label><input type="radio" name="p1" value="import pandas"> `import pandas`</label>
+          <label><input type="radio" name="p1" value="import pandas as pd"> `import pandas as pd`</label>
+          <label><input type="radio" name="p1" value="from pandas import *"> `from pandas import *`</label>
+          <label><input type="radio" name="p1" value="require('pandas')"> `require('pandas')`</label>
+        </div>
+        <button onclick="checkRadioAnswer('p1', 'import pandas as pd')">Verificar</button>
+        <div class="result" id="r1-pandas"></div>
+      </div>
+
+      <div class="question">
+        <p>2. Qual estrutura de dados do Pandas é unidimensional (coluna única)?</p>
+        <div class="options">
+          <label><input type="radio" name="p2" value="DataFrame"> `DataFrame`</label>
+          <label><input type="radio" name="p2" value="Series"> `Series`</label>
+          <label><input type="radio" name="p2" value="Panel"> `Panel`</label>
+          <label><input type="radio" name="p2" value="Array"> `Array`</label>
+        </div>
+        <button onclick="checkRadioAnswer('p2', 'Series')">Verificar</button>
+        <div class="result" id="r2-pandas"></div>
+      </div>
+
+      <div class="question">
+        <p>3. Como você cria um DataFrame Pandas a partir de um dicionário?</p>
+        <div class="options">
+          <label><input type="radio" name="p3" value="pd.DataFrame(dict)"> `pd.DataFrame(dict)`</label>
+          <label><input type="radio" name="p3" value="pd.create_dataframe(dict)"> `pd.create_dataframe(dict)`</label>
+          <label><input type="radio" name="p3" value="DataFrame.from_dict(dict)"> `DataFrame.from_dict(dict)`</label>
+          <label><input type="radio" name="p3" value="pd.to_dataframe(dict)"> `pd.to_dataframe(dict)`</label>
+        </div>
+        <button onclick="checkRadioAnswer('p3', 'pd.DataFrame(dict)')">Verificar</button>
+        <div class="result" id="r3-pandas"></div>
+      </div>
+
+      <div class="question">
+        <p>4. Qual método é usado para ler um arquivo CSV em um DataFrame?</p>
+        <div class="options">
+          <label><input type="radio" name="p4" value="pd.load_csv()"> `pd.load_csv()`</label>
+          <label><input type="radio" name="p4" value="pd.read_csv()"> `pd.read_csv()`</label>
+          <label><input type="radio" name="p4" value="pd.get_csv()"> `pd.get_csv()`</label>
+          <label><input type="radio" name="p4" value="DataFrame.from_csv()"> `DataFrame.from_csv()`</label>
+        </div>
+        <button onclick="checkRadioAnswer('p4', 'pd.read_csv()')">Verificar</button>
+        <div class="result" id="r4-pandas"></div>
+      </div>
+
+      <div class="question">
+        <p>5. Como você seleciona uma coluna 'Nome' de um DataFrame chamado `df`?</p>
+        <div class="options">
+          <label><input type="radio" name="p5" value="df.Nome"> `df.Nome`</label>
+          <label><input type="radio" name="p5" value="df['Nome']"> `df['Nome']`</label>
+          <label><input type="radio" name="p5" value="df(Nome)"> `df(Nome)`</label>
+          <label><input type="radio" name="p5" value="df.select('Nome')"> `df.select('Nome')`</label>
+        </div>
+        <button onclick="checkRadioAnswer('p5', 'df[\'Nome\']')">Verificar</button>
+        <div class="result" id="r5-pandas"></div>
+      </div>
+
+      <div class="question">
+        <p>6. Qual método é usado para exibir as primeiras 5 linhas de um DataFrame `df`?</p>
+        <div class="options">
+          <label><input type="radio" name="p6" value="df.top()"> `df.top()`</label>
+          <label><input type="radio" name="p6" value="df.first(5)"> `df.first(5)`</label>
+          <label><input type="radio" name="p6" value="df.head()"> `df.head()`</label>
+          <label><input type="radio" name="p6" value="df.peek()"> `df.peek()`</label>
+        </div>
+        <button onclick="checkRadioAnswer('p6', 'df.head()')">Verificar</button>
+        <div class="result" id="r6-pandas"></div>
+      </div>
+
+      <div class="question">
+        <p>7. Como você remove linhas com valores ausentes (NaN) de um DataFrame `df`?</p>
+        <div class="options">
+          <label><input type="radio" name="p7" value="df.remove_nan()"> `df.remove_nan()`</label>
+          <label><input type="radio" name="p7" value="df.drop_null()"> `df.drop_null()`</label>
+          <label><input type="radio" name="p7" value="df.dropna()"> `df.dropna()`</label>
+          <label><input type="radio" name="p7" value="df.clean()"> `df.clean()`</label>
+        </div>
+        <button onclick="checkRadioAnswer('p7', 'df.dropna()')">Verificar</button>
+        <div class="result" id="r7-pandas"></div>
+      </div>
+
+      <div class="question">
+        <p>8. Qual função é usada para agrupar dados em um DataFrame e aplicar uma função de agregação?</p>
+        <div class="options">
+          <label><input type="radio" name="p8" value="df.group()"> `df.group()`</label>
+          <label><input type="radio" name="p8" value="df.aggregate_by()"> `df.aggregate_by()`</label>
+          <label><input type="radio" name="p8" value="df.groupby()"> `df.groupby()`</label>
+          <label><input type="radio" name="p8" value="df.pivot_table()"> `df.pivot_table()`</label>
+        </div>
+        <button onclick="checkRadioAnswer('p8', 'df.groupby()')">Verificar</button>
+        <div class="result" id="r8-pandas"></div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <script>
+    // Função para verificar respostas de rádio buttons
+    function checkRadioAnswer(questionName, correctAnswer) {
+      const radios = document.getElementsByName(questionName);
+      let userAnswer = '';
+      
+      for (const radio of radios) {
+        if (radio.checked) {
+          userAnswer = radio.value;
+          break;
+        }
+      }
+
+      // Ajusta o ID do resultado para as perguntas do Pandas (ex: p1 -> r1-pandas)
+      // Se o questionName começa com 'p', adiciona '-pandas' ao ID do resultado
+      let resultId;
+      if (questionName.startsWith('p')) {
+          resultId = 'r' + questionName.substring(1) + '-pandas';
+      } else {
+          resultId = 'r' + questionName.substring(1);
+      }
+      
+      const resultDiv = document.getElementById(resultId);
+
+      const normalizedUserAnswer = userAnswer.trim().toLowerCase();
+      const normalizedCorrectAnswer = correctAnswer.trim().toLowerCase();
+
+      if (normalizedUserAnswer === normalizedCorrectAnswer) {
+        resultDiv.innerText = '✅ Correto!';
+        resultDiv.className = 'result correct';
+      } else if (userAnswer === '') {
+        resultDiv.innerText = 'Por favor, selecione uma opção.';
+        resultDiv.className = 'result incorrect';
+      } else {
+        resultDiv.innerText = `❌ Incorreto. A resposta correta era: "${correctAnswer}"`;
+        resultDiv.className = 'result incorrect';
+      }
+    }
+
+    // Função para alternar a visibilidade das seções
+    function showSection(sectionId) {
+        // Esconde todas as seções
+        const sections = document.querySelectorAll('main section');
+        sections.forEach(section => {
+            section.classList.remove('active');
+        });
+
+        // Mostra a seção desejada
+        const activeSection = document.getElementById(sectionId);
+        if (activeSection) {
+            activeSection.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' }); // Rola para o topo da página
+        }
+    }
+
+    // Mostra a seção do guia por padrão ao carregar a página
+    document.addEventListener('DOMContentLoaded', () => {
+        showSection('intro-guide');
+    });
+  </script>
+</body>
+</html>
