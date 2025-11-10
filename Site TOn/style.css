@@ -1,0 +1,371 @@
+/* RESET E CONFIGURAÇÕES GERAIS */
+:root {
+    --primary-color: #A0522D; /* Marrom-claro/terra (elegância) */
+    --secondary-color: #F8F8FF; /* Branco-espelho */
+    --accent-color: #FF69B4; /* Rosa Choque (romance) */
+    --text-color: #333;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    color: var(--text-color);
+    line-height: 1.6;
+    background-color: var(--secondary-color);
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+/* 0. HEADER (MENU) */
+#header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 15px 0;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+}
+
+#header nav a {
+    text-decoration: none;
+    color: var(--text-color);
+    padding: 0 20px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+#header nav a:hover {
+    color: var(--accent-color);
+}
+
+/* SEÇÕES GERAIS */
+.content-section {
+    padding: 80px 10%;
+    min-height: 60vh;
+}
+
+.centered {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.separator {
+    width: 50px;
+    height: 3px;
+    background-color: var(--accent-color);
+    margin: 10px auto 30px auto;
+}
+
+.intro-text {
+    font-size: 1.1em;
+    margin-bottom: 40px;
+}
+
+/* 1. HERO SECTION */
+.hero-section {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* RESERVADO PARA FOTO DE FUNDO */
+    background: url('sua-foto-de-fundo.jpg') no-repeat center center/cover; 
+    color: white; /* Cor do texto no topo da imagem */
+    position: relative;
+}
+
+.hero-content {
+    background-color: rgba(0, 0, 0, 0.4); /* Fundo escuro para destacar texto */
+    padding: 40px;
+    border-radius: 10px;
+}
+
+.hero-content h1 {
+    font-size: 3.5em;
+    color: var(--secondary-color);
+    text-shadow: 2px 2px 4px #000;
+}
+
+.hero-content p {
+    font-size: 1.5em;
+    margin-top: 10px;
+    color: var(--secondary-color);
+}
+
+.scroll-down {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2em;
+    color: var(--secondary-color);
+    text-decoration: none;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+    40% {transform: translateY(-10px);}
+    60% {transform: translateY(-5px);}
+}
+
+
+/* 2. & 4. RESERVA DE FOTOS */
+.photo-placeholder {
+    background-color: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #666;
+    font-style: italic;
+    margin: 20px auto;
+}
+
+.photo-placeholder.large {
+    width: 100%;
+    max-width: 600px;
+    height: 350px;
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.photo-placeholder.grid-item {
+    height: 250px;
+    border-radius: 5px;
+}
+
+.caption {
+    text-align: center;
+    margin-top: 20px;
+    font-style: italic;
+    color: #666;
+}
+
+/* 3. LINHA DO TEMPO */
+.timeline-bg {
+    background-color: #F0EAD6; /* Cor de fundo suave */
+}
+
+.timeline {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    background-color: var(--primary-color);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -1px;
+}
+
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+}
+
+.timeline-item:nth-child(even) {
+    left: 50%;
+}
+
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    right: -10px;
+    background-color: var(--secondary-color);
+    border: 3px solid var(--accent-color);
+    top: 15px;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.timeline-item:nth-child(even)::after {
+    left: -8px;
+}
+
+.timeline-content {
+    padding: 20px 30px;
+    background-color: white;
+    position: relative;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.timeline-date {
+    position: absolute;
+    top: 25px;
+    font-weight: bold;
+    color: var(--accent-color);
+    right: -100px;
+}
+
+.timeline-item:nth-child(even) .timeline-date {
+    left: -100px;
+    text-align: right;
+}
+
+/* 5. OS PORQUÊS */
+.light-bg {
+    background-color: #F8F8F8;
+}
+
+.reasons-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.reason-card {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    width: 45%;
+    min-width: 300px;
+    text-align: left;
+}
+
+.reason-card .number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5em;
+    color: var(--accent-color);
+    display: block;
+    margin-bottom: 10px;
+}
+
+.reason-card h3 {
+    margin-bottom: 5px;
+    color: var(--text-color);
+}
+
+/* 6. O JURAMENTO */
+.final-callout {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('sua-foto-juramento.jpg') no-repeat center center/cover;
+    color: var(--secondary-color);
+    text-align: center;
+}
+
+.oath-box {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    border-radius: 10px;
+    max-width: 700px;
+    margin: 0 auto;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.oath-pre-text {
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.oath-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4em;
+    line-height: 1.8;
+}
+
+/* 7. FOOTER */
+#footer {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    padding: 50px 10%;
+    text-align: center;
+}
+
+.music-section {
+    margin-bottom: 30px;
+}
+
+.music-placeholder {
+    background-color: rgba(255, 255, 255, 0.2);
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+.signature {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2em;
+    margin-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    padding-top: 10px;
+}
+
+/* RESPONSIVIDADE (MOBILE) */
+@media (max-width: 768px) {
+    .content-section {
+        padding: 60px 5%;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5em;
+    }
+
+    /* Timeline para Mobile */
+    .timeline::after {
+        left: 31px;
+    }
+
+    .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+    }
+
+    .timeline-item:nth-child(even) {
+        left: 0%;
+    }
+
+    .timeline-item::after {
+        left: 23px;
+    }
+
+    .timeline-item:nth-child(even)::after {
+        left: 23px;
+    }
+
+    .timeline-date {
+        position: relative;
+        text-align: left;
+        margin-bottom: 10px;
+        left: 0 !important;
+        right: 0 !important;
+    }
+
+    .reason-card {
+        width: 100%;
+    }
+}
